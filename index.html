@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .imgBox canvas {
+      margin-top: 10px;
+      border: 1px solid #e0e0e0;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div>
+      <input type="number" id="width" value="300" />
+      <input type="number" id="height" value="150" />
+      <input type="button" id="reset" value="reset" />
+      <input type="button" id="export" value="export" />
+    </div>
+    <div class="imgBox">
+      <canvas id="flash" ></canvas>
+    </div>
+  </div>
+  <script>
+    window.onload = () => {
+      const width = document.getElementById('width');
+      const height = document.getElementById('height');
+      const reset = document.getElementById('reset');
+      const exportBtn = document.getElementById('export');
+      const canvas = document.getElementById('flash');
+      const context  = canvas.getContext('2d');
+      function draw() {
+        const widthVal = width.value;
+        const heightVal = height.value;
+        canvas.setAttribute('width', widthVal);
+        canvas.setAttribute('height', heightVal);
+        context.fillStyle = '#000000';
+        context.fillRect(0, 0, widthVal, heightVal);
+        context.font = "48px serif";
+        context.fillStyle = '#FFFFFF';
+        context.fillText(`${widthVal}x${heightVal}`, 10, 50);
+      }
+      draw()
+      reset.addEventListener('click', () => {
+        draw();
+      })
+      exportBtn.addEventListener('click', () => {
+        const widthVal = width.value;
+        const heightVal = height.value;
+        canvas.toBlob((export_blob) => {
+          const urlObject = URL;
+          const save_link = document.createElement('a');
+          save_link.target = '_blank';
+          save_link.href = urlObject.createObjectURL(export_blob);
+          save_link.download = `${widthVal}x${heightVal}.png`;
+          save_link.click();
+        });
+      });
+
+    }
+  </script>
+</body>
+</html>

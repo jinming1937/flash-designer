@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drawing</title>
+    <style>
+      .box canvas {
+        /* width: 150px;
+        height: 150px; */
+        border: 1px solid #e0e0e0;
+      }
+    </style>
+</head>
+<body>
+  <div class="box">
+    <canvas id="flash">您的浏览器居然不支持canvas元素!!!</canvas>
+  </div>
+  <div class="tool">
+    <input type="number" id="width" value="300" />
+    <input type="number" id="height" value="300" />
+    <input type="button" id="reset" value="reset" />
+    <input type="button" id="export" value="export" />
+
+    <label>
+      line
+      <input type="radio" value="line" name="shape" />
+    </label>
+    <label>
+      round
+      <input type="radio" value="round" name="shape" />
+    </label>
+    <label>
+      squire
+      <input type="radio" value="squire" name="shape" />
+    </label>
+  </div>
+</body>
+</html>
+
